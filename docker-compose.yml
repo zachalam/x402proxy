@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  x402-facilitator:
+    image: ukstv/x402-facilitator
+    container_name: x402facilitator
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./x402-rs/.env
+    networks:
+      - x402-network
+    restart: unless-stopped
+
+  x402-proxy:
+    build: .
+    container_name: x402proxy-server
+    ports:
+      - "3000:3000"
+    depends_on:
+      - x402-facilitator
+    networks:
+      - x402-network
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=development
+    volumes:
+      # Mount source code for hot reloading
+      - ./server.js:/app/server.js
+      - ./package.json:/app/package.json
+      - ./settings.json:/app/settings.json
+
+
+networks:
+  x402-network:
+    driver: bridge

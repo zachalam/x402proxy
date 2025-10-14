@@ -1,0 +1,18 @@
+{
+    "config": {
+        "defaultNetwork": "base-sepolia",
+        "defaultPrice": "$0.02",
+        "defaultPaymasterAddress": "0xBA444d9C4707Ca960f3F45FD224E1a3750762108",
+        "defaultForwardTo": "https://catfact.ninja"
+    },
+    "routes": [
+        {
+            "route": "/fact",
+            "rewriteRoute": "/cat",
+            "price": "$0.01"
+        },
+        {
+            "route": "/breeds"
+        }
+    ]
+}

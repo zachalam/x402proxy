@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: x402proxy-dev
+    ports:
+      - "3000:3000"
+    volumes:
+      # Mount source code for hot reload with nodemon
+      - ./src:/app/src:ro
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    restart: unless-stopped
+    networks:
+      - proxy-network
+
+networks:
+  proxy-network:
+    driver: bridge

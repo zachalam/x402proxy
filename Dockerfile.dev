@@ -1,0 +1,23 @@
+# Development Dockerfile with nodemon
+FROM node:22-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Install nodemon globally for dev
+RUN npm install -g nodemon@latest
+
+# Copy package files
+COPY package*.json ./
+
+# Install all dependencies (including dev)
+RUN npm ci && npm cache clean --force
+
+# Copy application files
+COPY src/ ./src/
+
+# Expose port
+EXPOSE 3000
+
+# Start with nodemon for hot reload
+CMD ["nodemon", "src/index.js"]

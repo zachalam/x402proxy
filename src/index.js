@@ -1,6 +1,5 @@
 import express from 'express';
 import { paymentMiddleware } from "x402-express";
-import morgan from 'morgan';
 import cors from 'cors';
 import fs from 'fs/promises';
 import path from 'path';
@@ -33,7 +32,6 @@ const loadConfig = async () => {
 await loadConfig();
 
 // Middleware
-app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

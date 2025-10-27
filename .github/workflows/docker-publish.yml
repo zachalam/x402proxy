@@ -4,11 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'src/**'
-      - 'Dockerfile'
-      - 'package*.json'
-      - 'config.json'
 
 env:
   REGISTRY: ghcr.io

@@ -1,0 +1,24 @@
+{
+    "facilitatorUrl": "https://x402.org/facilitator",
+    "network": "base-sepolia",
+    "paymentAddress": "0x5629562956295629562956295629562956295629",
+    "defaultPrice": "$0.10",
+    "protectedEndpoints": {
+        "GET /cat": {
+            "price": "$0.10",
+            "forwardTo": "https://api.thecatapi.com/v1/images/search"
+        },
+        "GET /dog": {
+            "price": "$0.10",
+            "forwardTo": "https://api.thedogapi.com/v1/images/search"
+        },
+        "GET /fact": {
+            "price": "$0.10",
+            "forwardTo": "https://catfact.ninja/fact"
+        },
+        "GET /joke": {
+            "price": "$0.10",
+            "forwardTo": "https://official-joke-api.appspot.com/random_joke"
+        }
+    }
+}

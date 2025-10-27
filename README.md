@@ -43,6 +43,30 @@ docker-compose down
 
 The application will be available at `http://localhost:3000`
 
+**Note:** The `config.json` file is automatically mounted and loaded when the container starts.
+
+#### Using a Custom Config Path
+
+You can specify a custom config file path using the `CONFIG` environment variable:
+
+```bash
+# Using environment variable for custom config
+CONFIG=/path/to/custom-config.json npm start
+
+# With Docker Compose
+docker-compose run -e CONFIG=/app/custom-config.json app
+```
+
+### Configuration
+
+The application loads configuration from `config.json` in the root directory (or from the path specified by the `CONFIG` environment variable). The configuration includes:
+
+- `facilitatorUrl` - The X402 facilitator URL
+- `network` - Blockchain network (e.g., "base-sepolia")
+- `paymentAddress` - Receiving wallet address
+- `defaultPrice` - Default payment price
+- `protectedEndpoints` - Map of protected endpoints with prices and forwarding URLs
+
 ### Production
 
 #### Build the production image
@@ -67,6 +91,7 @@ docker run -p 3000:3000 --name x402proxy x402proxy:latest
 
 - `PORT` - Server port (default: 3000)
 - `NODE_ENV` - Environment (development/production)
+- `CONFIG_PATH` - Path to a config.json file (default: ./config.json)
 
 ### Health Check
 

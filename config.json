@@ -1,7 +1,7 @@
 {
     "facilitatorUrl": "https://x402.org/facilitator",
     "network": "base-sepolia",
-    "paymentAddress": "0x5629562956295629562956295629562956295629",
+    "paymentAddress": "0x3da338E71829128BF05c17146EE8CC7A21e339b9",
     "defaultPrice": "$0.10",
     "protectedEndpoints": {
         "GET /cat": {

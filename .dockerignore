@@ -21,3 +21,6 @@ build
 .dockerignore
 docker-compose.yml
 Dockerfile.dev
+
+# Allow config.json
+!config.json

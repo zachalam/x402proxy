@@ -17,8 +17,8 @@ COPY src/ ./src/
 COPY config.json ./config.json
 
 # Create non-root user for security
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nodejs -u 1001 && \
+RUN groupadd -g 1001 nodejs && \
+    useradd -u 1001 -g nodejs -m -s /bin/bash nodejs && \
     chown -R nodejs:nodejs /app
 USER nodejs
 

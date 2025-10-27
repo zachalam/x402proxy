@@ -5,6 +5,7 @@ import cors from 'cors';
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import axios from 'axios';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -42,7 +43,7 @@ const protectedEndpoints = {};
 if (config.protectedEndpoints) {
   for (const [endpoint, configValue] of Object.entries(config.protectedEndpoints)) {
     protectedEndpoints[endpoint] = {
-      price: configValue.price,
+      price: configValue.price || config.defaultPrice,
       network: config.network,
     };
   }
@@ -86,8 +87,71 @@ if (config.protectedEndpoints) {
     
     // Create the route handler
     app[methodLower](path, async (req, res) => {
-      // Return the paid status
-      res.json({ paid: true });
+      try {
+        // If forwardTo is defined, proxy the request
+        if (endpointConfig.forwardTo) {
+          console.log(`Proxying request to: ${endpointConfig.forwardTo}`);
+          
+          // Build proxy config
+          const proxyConfig = {
+            method: method,
+            url: endpointConfig.forwardTo,
+            validateStatus: () => true, // Don't throw on any status
+            // Only include request body for methods that support it
+            ...(['POST', 'PUT', 'PATCH'].includes(method) && req.body ? { data: req.body } : {}),
+          };
+          
+          // Forward only safe headers (exclude problematic ones)
+          const headersToForward = {};
+          const safeHeaders = ['content-type', 'authorization', 'x-requested-with', 'accept', 'user-agent'];
+          for (const header of safeHeaders) {
+            if (req.headers[header]) {
+              headersToForward[header] = req.headers[header];
+            }
+          }
+          
+          if (Object.keys(headersToForward).length > 0) {
+            proxyConfig.headers = headersToForward;
+          }
+          
+          console.log(`Proxy config:`, { method, url: endpointConfig.forwardTo, hasBody: !!proxyConfig.data, headers: Object.keys(headersToForward) });
+          
+          // Forward the request using axios
+          const forwardResponse = await axios(proxyConfig);
+          
+          // Set the status code
+          res.status(forwardResponse.status);
+          
+          // Forward response headers (but not problematic ones)
+          if (forwardResponse.headers) {
+            const responseHeadersToForward = {};
+            const safeResponseHeaders = ['content-type', 'content-encoding', 'cache-control', 'etag', 'last-modified'];
+            for (const header of safeResponseHeaders) {
+              if (forwardResponse.headers[header]) {
+                responseHeadersToForward[header] = forwardResponse.headers[header];
+              }
+            }
+            
+            Object.keys(responseHeadersToForward).forEach(key => {
+              res.setHeader(key, responseHeadersToForward[key]);
+            });
+          }
+          
+          // Return the response data
+          res.send(forwardResponse.data);
+        } else {
+          // No forwardTo configured, just return paid status
+          res.json({ paid: true });
+        }
+      } catch (error) {
+        console.error(`Error proxying to ${endpointConfig.forwardTo}:`, error.message);
+        console.error('Error details:', error.response?.status, error.response?.data);
+        res.status(502).json({ 
+          error: 'Failed to forward request',
+          message: error.message,
+          details: error.response?.data 
+        });
+      }
     });
   }
 }

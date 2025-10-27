@@ -106,6 +106,17 @@ GET /health
 - **Development (docker-compose.yml)**: Uses nodemon for hot reload, mounts source code as volume
 - **Production (Dockerfile)**: Optimized image with only production dependencies, runs as non-root user
 
+### GitHub Container Registry
+
+The application is automatically built and pushed to GitHub Container Registry (ghcr.io) on every push to the main branch.
+
+Pull and run the latest image:
+
+```bash
+docker pull ghcr.io/zachalam/x402proxy:latest
+docker run -p 3000:3000 ghcr.io/zachalam/x402proxy:latest
+```
+
 ## License
 
 ISC

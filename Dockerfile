@@ -23,7 +23,7 @@ RUN addgroup -g 1001 -S nodejs && \
 USER nodejs
 
 # Expose port
-EXPOSE 80
+EXPOSE 3000
 
 
 # Start the application

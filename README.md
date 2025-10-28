@@ -4,6 +4,17 @@
 
 A plug-and-play proxy that accepts x402 payments. Set up in minutes and start selling one-time access to any API - whether it's a new service you're building or an existing API you want to monetize.
 
+🌐 **Multi-chain support** - Works with Ethereum, Base, Solana, and more  
+💰 **Direct payments** - Receive money straight to your wallet  
+💲 **Flexible pricing** - Set global or per-route pricing  
+🔌 **Plug & play** - Works with any x402 facilitator
+
+```
+[Client] → [x402proxy] → [Any API]
+              ↓
+         [facilitator]
+```
+
 ## Getting Started
 
 ### Prerequisites

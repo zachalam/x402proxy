@@ -7,6 +7,32 @@ A Node.js Express proxy application with Docker support.
 ### Prerequisites
 - Docker and Docker Compose
 
+### 2 command setup (60 seconds)
+Step 1. Download config.json (modify if needed)
+```bash
+curl -o custom-config.json https://raw.githubusercontent.com/zachalam/x402proxy/refs/heads/main/config.json
+```
+
+Step 2. Mount config and run docker
+```bash
+docker run -p 8080:8080 \
+  -v $(pwd)/custom-config.json:/app/custom-config.json:ro \
+  -e CONFIG_PATH=/app/custom-config.json \
+  ghcr.io/zachalam/x402proxy:latest
+```
+
+### Configuration
+
+The application loads configuration from `config.json` in the root directory (or from the path specified by the `CONFIG_PATH` environment variable). The configuration includes:
+
+**Tip for large configs:** For large `protectedEndpoints` configurations, file mounting is recommended (no size limits):
+
+- `facilitatorUrl` - The X402 facilitator URL
+- `network` - Blockchain network (e.g., "base-sepolia")
+- `paymentAddress` - Receiving wallet address
+- `defaultPrice` - Default payment price
+- `protectedEndpoints` - Map of protected endpoints with prices and forwarding URLs
+
 ### GitHub Container Registry
 
 The application is automatically built and pushed to GitHub Container Registry (ghcr.io) on every push to the main branch.
@@ -14,14 +40,12 @@ The application is automatically built and pushed to GitHub Container Registry (
 Pull and run the latest image:
 
 ```bash
+# Basic usage (uses built-in config.json from image)
 docker pull ghcr.io/zachalam/x402proxy:latest
-docker run -p 3000:3000 ghcr.io/zachalam/x402proxy:latest
+docker run -p 8080:8080 ghcr.io/zachalam/x402proxy:latest
 
-# Using CONFIG_PATH environment variable
-docker run -p 3000:3000 \
-  -v /path/to/custom-config.json:/app/custom-config.json:ro \
-  -e CONFIG_PATH=/app/custom-config.json \
-  ghcr.io/zachalam/x402proxy:latest
+# Use different external port
+docker run -p 4020:8080 -e PORT=8080 ghcr.io/zachalam/x402proxy:latest
 ```
 
 
@@ -38,6 +62,8 @@ npm run dev
 
 # Run in production mode
 npm start
+
+# The application will be available at http://localhost:3000
 ```
 
 #### With Docker
@@ -72,48 +98,6 @@ CONFIG=/path/to/custom-config.json npm start
 docker-compose run -e CONFIG=/app/custom-config.json app
 ```
 
-### Configuration
-
-The application loads configuration from `config.json` in the root directory (or from the path specified by the `CONFIG` environment variable). The configuration includes:
-
-- `facilitatorUrl` - The X402 facilitator URL
-- `network` - Blockchain network (e.g., "base-sepolia")
-- `paymentAddress` - Receiving wallet address
-- `defaultPrice` - Default payment price
-- `protectedEndpoints` - Map of protected endpoints with prices and forwarding URLs
-
-### Production
-
-#### Build the production image
-
-```bash
-docker build -t x402proxy:latest .
-```
-
-#### Run the production container
-
-```bash
-docker run -p 3000:3000 --name x402proxy x402proxy:latest
-```
-
-### Scripts
-
-- `npm start` - Run the application in production mode
-- `npm run dev` - Run the application in development mode with nodemon
-- `npm run lint` - Lint the codebase
-
-### Environment Variables
-
-- `PORT` - Server port (default: 3000)
-- `NODE_ENV` - Environment (development/production)
-- `CONFIG_PATH` - Path to a config.json file (default: ./config.json)
-
-### Health Check
-
-The application includes a health check endpoint:
-
-```
-GET /health
 ```
 
 ### Architecture

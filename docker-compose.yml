@@ -15,7 +15,7 @@ services:
       - ./config.json:/app/config.json:ro
     environment:
       - NODE_ENV=development
-      - PORT=3000
+      - PORT=3000  # Local development uses port 3000
     restart: unless-stopped
     networks:
       - proxy-network

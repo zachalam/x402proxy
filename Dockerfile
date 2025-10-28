@@ -23,7 +23,7 @@ RUN groupadd -g 1001 nodejs && \
 USER nodejs
 
 # Expose port
-EXPOSE 3000
+EXPOSE 8080
 
 
 # Start the application

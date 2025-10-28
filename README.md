@@ -1,19 +1,19 @@
 # x402proxy
 
-A Node.js Express proxy application with Docker support.
+A plug-and-play proxy that accepts x402 payments. Set up in minutes and start selling one-time access to any API - whether it's a new service you're building or an existing API you want to monetize.
 
 ## Getting Started
 
 ### Prerequisites
 - Docker and Docker Compose
 
-### 2 command setup (60 seconds)
-Step 1. Download config.json (modify if needed)
+### Quick Start - Under 60 Seconds
+**Step 1.** Download config.json (customize if needed)
 ```bash
 curl -o custom-config.json https://raw.githubusercontent.com/zachalam/x402proxy/refs/heads/main/config.json
 ```
 
-Step 2. Mount config and run docker
+**Step 2.** Mount config and run docker
 ```bash
 docker run -p 8080:8080 \
   -v $(pwd)/custom-config.json:/app/custom-config.json:ro \

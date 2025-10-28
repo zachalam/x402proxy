@@ -86,27 +86,10 @@ The application will be available at `http://localhost:3000`
 
 **Note:** The `config.json` file is automatically mounted and loaded when the container starts.
 
-#### Using a Custom Config Path
-
-You can specify a custom config file path using the `CONFIG` environment variable:
-
-```bash
-# Using environment variable for custom config
-CONFIG=/path/to/custom-config.json npm start
-
-# With Docker Compose
-docker-compose run -e CONFIG=/app/custom-config.json app
-```
-
-```
-
 ### Architecture
 
 - **Development (docker-compose.yml)**: Uses nodemon for hot reload, mounts source code as volume
 - **Production (Dockerfile)**: Optimized image with only production dependencies, runs as non-root user
 
-
-
 ## License
-
 ISC

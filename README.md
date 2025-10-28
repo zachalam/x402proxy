@@ -35,7 +35,7 @@ The application loads configuration from `config.json` in the root directory (or
 
 ### GitHub Container Registry
 
-The application is automatically built and pushed to GitHub Container Registry (ghcr.io) on every push to the main branch.
+The application is automatically built and pushed to GitHub Container Registry (ghcr.io) on every push to the main branch. Each push creates a new version tagged with an auto-incremented version number (e.g., `ghcr.io/zachalam/x402proxy:42`) and also tagged as `latest`.
 
 Pull and run the latest image:
 

@@ -35,7 +35,7 @@ The application loads configuration from `config.json` in the root directory (or
 
 ### GitHub Container Registry
 
-The application is automatically built and pushed to GitHub Container Registry (ghcr.io) on every push to the main branch. Each push creates a new version tagged with an auto-incremented version number (e.g., `ghcr.io/zachalam/x402proxy:42`) and also tagged as `latest`.
+The application is automatically built and pushed to GitHub Container Registry (ghcr.io) on every push to the main branch. Each push creates a new version tagged with an auto-incremented version number and also tagged as `latest`.
 
 Pull and run the latest image:
 
@@ -80,9 +80,9 @@ docker-compose logs -f
 
 # Stop the container
 docker-compose down
-```
 
-The application will be available at `http://localhost:3000`
+# The application will be available at http://localhost:3000
+```
 
 **Note:** The `config.json` file is automatically mounted and loaded when the container starts.
 

@@ -1,3 +1,5 @@
+![x402proxy](images/x402proxy.png)
+
 # x402proxy
 
 A plug-and-play proxy that accepts x402 payments. Set up in minutes and start selling one-time access to any API - whether it's a new service you're building or an existing API you want to monetize.

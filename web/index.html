@@ -29,12 +29,14 @@
             background: #f8f9fa;
             padding: 1rem 0;
             border-bottom: 2px solid #e9ecef;
+            position: relative;
         }
         
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
         
         .logo {
@@ -57,6 +59,37 @@
         
         nav a:hover {
             color: #2c3e50;
+        }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #2c3e50;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
         
         /* Hero Section */
@@ -349,9 +382,43 @@
                 font-size: 1rem;
             }
             
+            .menu-toggle {
+                display: flex;
+            }
+            
             nav ul {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #f8f9fa;
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0;
+                padding: 1rem 0;
+                border-top: 2px solid #e9ecef;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                z-index: 1000;
+            }
+            
+            nav ul.active {
+                max-height: 400px;
+            }
+            
+            nav ul li {
+                width: 100%;
+                padding: 0.75rem 2rem;
+                border-bottom: 1px solid #e9ecef;
+            }
+            
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+            
+            nav a {
+                display: block;
+                width: 100%;
             }
             
             .steps {
@@ -383,7 +450,12 @@
     <header>
         <nav class="container">
             <div class="logo">x402proxy</div>
-            <ul>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="nav-menu">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#use-cases">Use Cases</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
@@ -605,6 +677,28 @@ docker run -p 8080:8080 \<br>
             <p>Built with ❤️ for the x402 ecosystem</p>
         </div>
     </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close menu when clicking on a link
+            const navLinks = navMenu.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+    </script>
 </body>
 </html>
 

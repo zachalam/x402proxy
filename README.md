@@ -5,8 +5,8 @@
 A plug-and-play proxy that accepts x402 payments. Set up in minutes and start selling one-time access to any API - whether it's a new service you're building or an existing API you want to monetize.
 
 🌐 **Multi-chain support** - Works with Ethereum, Base, Solana, and more  
-💰 **Direct payments** - Receive money straight to your wallet  
-💲 **Flexible pricing** - Set global or per-route pricing  
+💰 **Direct payments** - Paywall any URL; payment straight to your wallet  
+🏗️ **Flexible pricing** - Set one-time global or per-route pricing  
 🔌 **Plug & play** - Works with any x402 facilitator
 
 ```
@@ -20,13 +20,13 @@ A plug-and-play proxy that accepts x402 payments. Set up in minutes and start se
 ### Prerequisites
 - Docker and Docker Compose
 
-### Quick Start - Under 60 Seconds
-**Step 1.** Download config.json (customize if needed)
+### Quick Start - 2 easy steps
+**Step 1.** Clone config.json, modify as needed. (format definition below)
 ```bash
 curl -o custom-config.json https://raw.githubusercontent.com/zachalam/x402proxy/refs/heads/main/config.json
 ```
 
-**Step 2.** Mount config and run docker
+**Step 2.** Mount config and run docker image.
 ```bash
 docker run -p 8080:8080 \
   -v $(pwd)/custom-config.json:/app/custom-config.json:ro \
@@ -36,15 +36,43 @@ docker run -p 8080:8080 \
 
 ### Configuration
 
-The application loads configuration from `config.json` in the root directory (or from the path specified by the `CONFIG_PATH` environment variable). The configuration includes:
-
-**Tip for large configs:** For large `protectedEndpoints` configurations, file mounting is recommended (no size limits):
+The application loads configuration from `config.json` in the project root directory (or from the path specified by the `CONFIG_PATH` environment variable). The configuration includes:
 
 - `facilitatorUrl` - The X402 facilitator URL
 - `network` - Blockchain network (e.g., "base-sepolia")
 - `paymentAddress` - Receiving wallet address
-- `defaultPrice` - Default payment price
+- `defaultPrice` - Default payment price for all routes
 - `protectedEndpoints` - Map of protected endpoints with prices and forwarding URLs
+
+**Sample config.json:**
+
+```json
+{
+  "facilitatorUrl": "https://x402.org/facilitator",
+  "network": "base-sepolia",
+  "paymentAddress": "0x5629562956295629562956295629562956295629",
+  "defaultPrice": "$0.05",
+  "protectedEndpoints": {
+    "GET /cat": {
+      "forwardTo": "https://api.thecatapi.com/v1/images/search"
+    },
+    "GET /dog": {
+      "price": "$0.10",
+      "forwardTo": "https://api.thedogapi.com/v1/images/search"
+    },
+    "GET /fact": {
+      "price": "$0.15",
+      "forwardTo": "https://catfact.ninja/fact"
+    },
+    "GET /joke": {
+      "price": "$0.20",
+      "forwardTo": "https://official-joke-api.appspot.com/random_joke"
+    }
+  }
+}
+```
+
+**Tip for large configs:** For large `protectedEndpoints` configurations, file mounting is recommended (no size limits).
 
 ### GitHub Container Registry
 

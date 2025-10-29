@@ -1,0 +1,3 @@
+# Exclude web assets from GitHub language statistics
+web/x402proxy-site.html linguist-documentation=true
+

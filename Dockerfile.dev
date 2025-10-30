@@ -16,8 +16,7 @@ RUN npm ci && npm cache clean --force
 # Copy application files
 COPY src/ ./src/
 
-# Copy config.json
-COPY config.json ./config.json
+# Do not bake config into the image; mount to /app/config.json during development
 
 # Expose port
 EXPOSE 3000

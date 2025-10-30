@@ -13,8 +13,7 @@ RUN npm ci --only=production && npm cache clean --force
 # Copy application files
 COPY src/ ./src/
 
-# Copy config.json
-COPY config.json ./config.json
+# Do not bake config into the image; require mounting to /app/config.json
 
 # Create non-root user for security
 RUN groupadd -g 1001 nodejs && \

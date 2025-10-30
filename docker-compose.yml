@@ -11,8 +11,8 @@ services:
     volumes:
       # Mount source code for hot reload with nodemon
       - ./src:/app/src:ro
-      # Mount config.json
-      - ./config.json:/app/config.json:ro
+      # Mount config to required path inside container
+      - ./custom-config.json:/app/config.json:ro
     environment:
       - NODE_ENV=development
       - PORT=3000  # Local development uses port 3000

@@ -657,11 +657,10 @@
             <p>Set up x402proxy in under 60 seconds</p>
             
             <div class="code-block">
-curl -o custom-config.json https://raw.githubusercontent.com/zachalam/x402proxy/refs/heads/main/config.json<br><br>
+curl -o custom-config.json https://raw.githubusercontent.com/zachalam/x402proxy/refs/heads/main/custom-config.json<br><br>
 
 docker run -p 8080:8080 \<br>
-&nbsp;&nbsp;-v $(pwd)/custom-config.json:/app/custom-config.json:ro \<br>
-&nbsp;&nbsp;-e CONFIG_PATH=/app/custom-config.json \<br>
+&nbsp;&nbsp;-v $(pwd)/custom-config.json:/app/config.json:ro \<br>
 &nbsp;&nbsp;ghcr.io/zachalam/x402proxy:latest
             </div>
             

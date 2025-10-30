@@ -21,22 +21,21 @@ A plug-and-play proxy that accepts x402 payments. Set up in minutes and start se
 - Docker and Docker Compose
 
 ### Quick Start - 2 easy steps
-**Step 1.** Clone config.json, modify as needed. (format definition below)
+**Step 1.** Download a starter config, modify as needed. (format definition below)
 ```bash
-curl -o custom-config.json https://raw.githubusercontent.com/zachalam/x402proxy/refs/heads/main/config.json
+curl -o custom-config.json https://raw.githubusercontent.com/zachalam/x402proxy/refs/heads/main/custom-config.json
 ```
 
-**Step 2.** Mount config and run docker image.
+**Step 2.** Mount your config to /app/config.json and run the image.
 ```bash
 docker run -p 8080:8080 \
-  -v $(pwd)/custom-config.json:/app/custom-config.json:ro \
-  -e CONFIG_PATH=/app/custom-config.json \
+  -v $(pwd)/custom-config.json:/app/config.json:ro \
   ghcr.io/zachalam/x402proxy:latest
 ```
 
 ### Configuration
 
-The application loads configuration from `config.json` in the project root directory (or from the path specified by the `CONFIG_PATH` environment variable). The configuration includes:
+The application loads configuration strictly from `/app/config.json` inside the container. If this file is not mounted, the container will exit with an error. The configuration includes:
 
 - `facilitatorUrl` - The X402 facilitator URL
 - `network` - Blockchain network (e.g., "base-sepolia")
@@ -44,7 +43,7 @@ The application loads configuration from `config.json` in the project root direc
 - `defaultPrice` - Default payment price for all routes
 - `protectedEndpoints` - Map of protected endpoints with prices and forwarding URLs
 
-**Sample config.json:**
+**Sample config (custom-config.json):**
 
 ```json
 {
@@ -81,12 +80,17 @@ The application is automatically built and pushed to GitHub Container Registry (
 Pull and run the latest image:
 
 ```bash
-# Basic usage (uses built-in config.json from image)
 docker pull ghcr.io/zachalam/x402proxy:latest
-docker run -p 8080:8080 ghcr.io/zachalam/x402proxy:latest
+
+# Run (config must be mounted to /app/config.json)
+docker run -p 8080:8080 \
+  -v $(pwd)/custom-config.json:/app/config.json:ro \
+  ghcr.io/zachalam/x402proxy:latest
 
 # Use different external port
-docker run -p 4020:8080 -e PORT=8080 ghcr.io/zachalam/x402proxy:latest
+docker run -p 4020:8080 -e PORT=8080 \
+  -v $(pwd)/custom-config.json:/app/config.json:ro \
+  ghcr.io/zachalam/x402proxy:latest
 ```
 
 
@@ -125,7 +129,7 @@ docker-compose down
 # The application will be available at http://localhost:3000
 ```
 
-**Note:** The `config.json` file is automatically mounted and loaded when the container starts.
+**Note:** You must mount your config to `/app/config.json`. If the file is missing, the container will exit with an error.
 
 ### Architecture
 

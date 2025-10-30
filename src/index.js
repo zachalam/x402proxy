@@ -16,14 +16,16 @@ const PORT = process.env.PORT || 8080;
 let config;
 const loadConfig = async () => {
   try {
-    const configPath = process.env.CONFIG_PATH|| path.join(__dirname, '..', 'config.json');
+    // Always expect the configuration to be mounted at /app/config.json
+    const configPath = '/app/config.json';
     console.log(`Loading config from: ${configPath}`);
     const configData = await fs.readFile(configPath, 'utf8');
     config = JSON.parse(configData);
     console.log('Configuration loaded successfully');
     console.log('Config:', JSON.stringify(config, null, 2));
   } catch (error) {
-    console.error('Failed to load config.json:', error.message);
+    console.error('Failed to load /app/config.json:', error.message);
+    console.error('Ensure you mount your config file to /app/config.json');
     process.exit(1);
   }
 };

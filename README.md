@@ -6,7 +6,7 @@
 
 **Monetize Any API in Minutes** • Accept x402 Payments • Zero Code Changes Required
 
-[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+[![GitHub stars](https://img.shields.io/github/stars/zachalam/x402proxy.svg?style=social&label=Star)](https://github.com/zachalam/x402proxy) [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
 </div>
 
@@ -23,7 +23,7 @@ A **plug-and-play proxy** that accepts x402 payments. Set up in minutes and star
 | 🌐 **Multi-chain support** | Works with Ethereum, Base, Solana, and more |
 | 💰 **Direct payments** | Paywall any URL; payment straight to your wallet |
 | 🏗️ **Flexible pricing** | Set one-time global or per-route pricing |
-| 🔌 **Plug & play** | Works with any x402 facilitator |
+| 🔌 **Plug & play** | Works with any standard x402 facilitator |
 
 ### 📊 How It Works
 
@@ -214,6 +214,8 @@ This project is licensed under the **ISC License**.
 <div align="center">
 
 ### ⭐ Star this repo if you find it useful!
+
+[![GitHub stars](https://img.shields.io/github/stars/zachalam/x402proxy.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/zachalam/x402proxy)
 
 **Built with ❤️ for the x402 ecosystem**
 

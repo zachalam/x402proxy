@@ -158,7 +158,7 @@ if (config.protectedEndpoints) {
 
 // Start server
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`x402proxy is running. More info available at => x402proxy.org`);
   console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
   console.log(`Network: ${config.network}`);
   console.log(`Default price: ${config.defaultPrice}`);

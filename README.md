@@ -6,7 +6,7 @@
 
 **Monetize Any API in Minutes** • Accept x402 Payments • Zero Code Changes Required
 
-[![GitHub stars](https://img.shields.io/github/stars/zachalam/x402proxy.svg?style=social&label=Star)](https://github.com/zachalam/x402proxy) [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+[![zachalam/x402proxy](https://img.shields.io/docker/v/zachalam/x402proxy)](https://hub.docker.com/r/zachalam/x402proxy) [![GitHub stars](https://img.shields.io/github/stars/zachalam/x402proxy.svg?style=social&label=Star)](https://github.com/zachalam/x402proxy) [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
 </div>
 
@@ -27,11 +27,7 @@ A **plug-and-play proxy** that accepts x402 payments. Set up in minutes and star
 
 ### 📊 How It Works
 
-```
-[Client] → [x402proxy] → [Any API]
-              ↓
-         [facilitator]
-```
+![x402proxy sequence diagram](images/mermaid-diagram.svg)
 
 **Simple architecture, powerful results.** Clients make requests, payments are verified via x402 facilitator, and your API gets protected automatically.
 

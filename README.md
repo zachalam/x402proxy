@@ -4,7 +4,7 @@
 
 # 💰 x402proxy
 
-**Monetize Any API in Minutes** • Accept x402 Payments • Zero Code Changes Required
+**Monetize Any API in Minutes** • Automatically accept x402 Payments • Simple Config, Zero Code Changes Required
 
 [![zachalam/x402proxy](https://img.shields.io/docker/v/zachalam/x402proxy)](https://hub.docker.com/r/zachalam/x402proxy) [![GitHub stars](https://img.shields.io/github/stars/zachalam/x402proxy.svg?style=social&label=Star)](https://github.com/zachalam/x402proxy) [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
@@ -14,7 +14,46 @@
 
 ## 🚀 What is x402proxy?
 
-A **plug-and-play proxy** that accepts x402 payments. Set up in minutes and start selling one-time access to any API - whether it's a new service you're building or an existing API you want to monetize.
+A **plug-and-play proxy** that automatically accepts x402 payments.
+
+Set it up in minutes in front of any existing API and start selling one-time access. 
+Use a simple config file to customize which endpoints to monetize and set your prices.
+
+## 🚦 Getting Started
+
+### 📋 Prerequisites
+
+- **Docker** and **Docker Compose**
+
+That's it! No complex dependencies or setup required.
+
+---
+
+<div align="center">
+
+## ⚡ Quick Start
+
+**🚀 Get up and running in under 60 seconds**
+
+</div>
+
+> **📥 Step 1: Download Starter Config**
+> 
+> ```bash
+> curl -o custom-config.json https://raw.githubusercontent.com/zachalam/x402proxy/refs/heads/main/custom-config.json
+> ```
+> 
+> **🐳 Step 2: Run with Docker**
+> 
+> ```bash
+> docker run -p 8080:8080 \
+>   -v $(pwd)/custom-config.json:/app/config.json:ro \
+>   ghcr.io/zachalam/x402proxy:latest
+> ```
+> 
+> **✅ That's it!** Your API proxy is now running and accepting x402 payments. 🎉
+
+---
 
 ### ✨ Key Features
 
@@ -30,40 +69,6 @@ A **plug-and-play proxy** that accepts x402 payments. Set up in minutes and star
 ![x402proxy sequence diagram](images/mermaid-diagram.svg)
 
 **Simple architecture, powerful results.** Clients make requests, payments are verified via x402 facilitator, and your API gets protected automatically.
-
-## 🚦 Getting Started
-
-### 📋 Prerequisites
-
-- **Docker** and **Docker Compose**
-
-That's it! No complex dependencies or setup required.
-
----
-
-### ⚡ Quick Start
-
-**Get up and running in under 60 seconds** 🎯
-
-#### Step 1: Download Starter Config
-
-Download a starter configuration file (you can modify it as needed):
-
-```bash
-curl -o custom-config.json https://raw.githubusercontent.com/zachalam/x402proxy/refs/heads/main/custom-config.json
-```
-
-#### Step 2: Run with Docker
-
-Mount your config to `/app/config.json` and run the container:
-
-```bash
-docker run -p 8080:8080 \
-  -v $(pwd)/custom-config.json:/app/config.json:ro \
-  ghcr.io/zachalam/x402proxy:latest
-```
-
-**That's it!** 🎉 Your API proxy is now running and accepting x402 payments.
 
 ---
 

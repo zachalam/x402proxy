@@ -1,6 +1,6 @@
 <div align="center">
 
-![x402proxy](images/x402proxy.png)
+![x402proxy](web/images/x402proxy.png)
 
 # 💰 x402proxy
 
@@ -66,7 +66,7 @@ That's it! No complex dependencies or setup required.
 
 ### 📊 How It Works
 
-![x402proxy sequence diagram](images/mermaid-diagram.svg)
+![x402proxy sequence diagram](diagrams/mermaid-diagram.svg)
 
 **Simple architecture, powerful results.** Clients make requests, payments are verified via x402 facilitator, and your API gets protected automatically.
 

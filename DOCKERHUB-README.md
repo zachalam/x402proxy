@@ -1,6 +1,6 @@
 <div align="center">
 
-![x402proxy](images/x402proxy.png)
+![x402proxy](web/images/x402proxy.png)
 
 # 💰 x402proxy
 

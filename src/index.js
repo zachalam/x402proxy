@@ -72,7 +72,7 @@ app.get('/', (req, res) => {
   res.json({
     message: 'x402proxy is running',
     repository: 'https://github.com/zachalam/x402proxy',
-    version: '1.0.0'
+    website: 'https://x402proxy.org'
   });
 });
 

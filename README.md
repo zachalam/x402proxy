@@ -51,7 +51,7 @@ That's it! No complex dependencies or setup required.
 >   ghcr.io/zachalam/x402proxy:latest
 > ```
 > 
-> **✅ That's it!** Your API proxy is now running and accepting x402 payments. 🎉
+> **✅ That's it!** Your instance of x402proxy is now running and accepting x402 payments. 🎉
 
 ---
 

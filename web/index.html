@@ -31,10 +31,10 @@
         }
         
         :root {
-            --primary: #22c55e;
-            --primary-dark: #16a34a;
-            --primary-light: #4ade80;
-            --accent: #10b981;
+            --primary: #6aa94f;
+            --primary-dark: #5a8f42;
+            --primary-light: #7bc05f;
+            --accent: #6aa94f;
             --dark: #0f172a;
             --dark-light: #1e293b;
             --text: #334155;
@@ -70,8 +70,8 @@
         }
         
         @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(34, 197, 94, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(34, 197, 94, 0.6); }
+            0%, 100% { box-shadow: 0 0 20px rgba(106, 169, 79, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(106, 169, 79, 0.6); }
         }
         
         /* Header */
@@ -177,7 +177,7 @@
         .hero {
             text-align: center;
             padding: 6rem 0;
-            background: linear-gradient(135deg, #22c55e 0%, #10b981 50%, #059669 100%);
+            background: linear-gradient(135deg, #6aa94f 0%, #5a8f42 50%, #4a7a35 100%);
             background-size: 200% 200%;
             animation: gradient-shift 8s ease infinite;
             color: white;
@@ -245,7 +245,7 @@
             width: 0;
             height: 0;
             border-radius: 50%;
-            background: rgba(34, 197, 94, 0.1);
+            background: rgba(106, 169, 79, 0.1);
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
@@ -314,7 +314,7 @@
         .feature-stacked-card:hover {
             background: white;
             border-color: var(--primary);
-            box-shadow: 0 10px 40px rgba(34, 197, 94, 0.15);
+            box-shadow: 0 10px 40px rgba(106, 169, 79, 0.15);
             transform: translateX(8px) translateY(-4px);
         }
         
@@ -351,6 +351,7 @@
             display: flex;
             gap: 1.5rem;
             overflow-x: auto;
+            overflow-y: hidden;
             padding: 2rem 0;
             scroll-behavior: smooth;
             scrollbar-width: thin;
@@ -360,6 +361,7 @@
         
         .use-cases-container::-webkit-scrollbar {
             height: 8px;
+            width: 8px;
         }
         
         .use-cases-container::-webkit-scrollbar-track {
@@ -370,6 +372,10 @@
         .use-cases-container::-webkit-scrollbar-thumb {
             background: linear-gradient(90deg, var(--primary), var(--accent));
             border-radius: 10px;
+        }
+        
+        .use-cases-container::-webkit-scrollbar-corner {
+            background: transparent;
         }
         
         .use-case-card {
@@ -400,7 +406,7 @@
         
         .use-case-card:hover {
             transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2);
+            box-shadow: 0 20px 40px rgba(106, 169, 79, 0.2);
             border-color: var(--primary);
         }
         
@@ -498,7 +504,7 @@
             margin: 0 auto 1.5rem;
             font-size: 2.5rem;
             font-weight: 800;
-            box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+            box-shadow: 0 8px 20px rgba(106, 169, 79, 0.3);
             animation: pulse-glow 3s ease-in-out infinite;
         }
         
@@ -518,7 +524,7 @@
         .cta {
             padding: 5rem 0;
             text-align: center;
-            background: linear-gradient(135deg, #22c55e 0%, #10b981 50%, #059669 100%);
+            background: linear-gradient(135deg, #6aa94f 0%, #5a8f42 50%, #4a7a35 100%);
             background-size: 200% 200%;
             animation: gradient-shift 8s ease infinite;
             color: white;
@@ -810,8 +816,8 @@
         <div class="container">
             <h1>Monetize Any API in Minutes</h1>
             <p>Accept x402 payments, sell one-time API access, integrate with any facilitator</p>
-            <a href="#get-started" class="btn">Get Started</a>
-            <a href="https://github.com/zachalam/x402proxy" class="btn btn-secondary">View on GitHub</a>
+            <a href="presentation.pdf" target="_blank" class="btn">📑 x402 Quickstart</a>
+            <a href="https://github.com/zachalam/x402proxy" class="btn btn-secondary">Try on GitHub</a>
         </div>
     </section>
 

@@ -177,25 +177,14 @@
         .hero {
             text-align: center;
             padding: 6rem 0;
-            background: linear-gradient(135deg, #6aa94f 0%, #5a8f42 50%, #4a7a35 100%);
-            background-size: 200% 200%;
-            animation: gradient-shift 8s ease infinite;
-            color: white;
+            background: white;
+            color: #4a5568;
             position: relative;
             overflow: hidden;
         }
         
         .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: float 20s linear infinite;
-            pointer-events: none;
+            display: none;
         }
         
         .hero .container {
@@ -209,67 +198,106 @@
             font-weight: 800;
             letter-spacing: -1px;
             line-height: 1.1;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            color: #4a5568;
         }
         
         .hero p {
             font-size: clamp(1.1rem, 2vw, 1.5rem);
             margin-bottom: 2.5rem;
-            opacity: 0.95;
             font-weight: 400;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            color: #4a5568;
         }
         
         .btn {
             display: inline-block;
-            padding: 1rem 2.5rem;
-            background: white;
-            color: var(--primary);
+            padding: 0.875rem 2rem;
             text-decoration: none;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
             position: relative;
             overflow: hidden;
+            border: 2px solid;
+            letter-spacing: 0.3px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
         
         .btn::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(106, 169, 79, 0.1);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: left 0.5s ease;
         }
         
         .btn:hover::before {
-            width: 300px;
-            height: 300px;
+            left: 100%;
         }
         
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
         
-        .btn-secondary {
+        .btn:active {
+            transform: translateY(0) scale(1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Primary button - Green background */
+        .hero .btn {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .hero .btn:hover {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+        
+        /* Secondary button - White background */
+        .hero .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border-color: rgba(106, 169, 79, 0.3);
+            margin-left: 1rem;
+        }
+        
+        .hero .btn-secondary:hover {
+            background: #f8fafc;
+            border-color: var(--primary);
+            color: var(--primary-dark);
+        }
+        
+        /* CTA section buttons (keep white text for green background) */
+        .cta .btn {
+            background: white;
+            color: var(--primary);
+            border-color: white;
+        }
+        
+        .cta .btn:hover {
+            background: #f8fafc;
+            border-color: #f8fafc;
+        }
+        
+        .cta .btn-secondary {
             background: transparent;
             color: white;
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-color: rgba(255, 255, 255, 0.6);
             margin-left: 1rem;
-            box-shadow: none;
         }
         
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .cta .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
             border-color: white;
         }
         
@@ -335,7 +363,7 @@
         
         .feature-stacked-content h3 {
             margin-bottom: 0.5rem;
-            color: var(--dark);
+            color: #4a5568;
             font-size: 1.25rem;
             font-weight: 700;
         }
@@ -423,7 +451,7 @@
         
         .use-case-card h3 {
             margin-bottom: 1rem;
-            color: var(--dark);
+            color: #4a5568;
             font-size: 1.3rem;
             font-weight: 700;
         }
@@ -439,10 +467,10 @@
             text-align: center;
             font-size: clamp(2rem, 4vw, 3rem);
             margin-bottom: 1rem;
-            color: var(--dark);
+            color: #4a5568;
             font-weight: 800;
             letter-spacing: -1px;
-            background: linear-gradient(135deg, var(--dark) 0%, var(--text) 100%);
+            background: linear-gradient(135deg, #4a5568 0%, var(--text) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -510,7 +538,7 @@
         
         .step h3 {
             margin-bottom: 1rem;
-            color: var(--dark);
+            color: #4a5568;
             font-size: 1.4rem;
             font-weight: 700;
         }
@@ -814,9 +842,9 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Monetize Any API in Minutes</h1>
+            <h1>Monetize Your API</h1>
             <p>Accept x402 payments, sell one-time API access, integrate with any facilitator</p>
-            <a href="x402-quickstart.pdf" target="_blank" class="btn">📑 x402 Quickstart</a>
+            <a href="x402-quickstart.pdf" target="_blank" class="btn">📑 x402 PDF</a>
             <a href="https://github.com/zachalam/x402proxy" class="btn btn-secondary">Try on GitHub</a>
         </div>
     </section>
@@ -825,7 +853,7 @@
         <section id="use-cases" class="features" style="background: #f8f9fa;">
             <div class="container">
                 <h2>Use Cases</h2>
-                <p class="section-subtitle">Perfect for a wide range of API & MCP monetization needs</p>
+                <p class="section-subtitle">x402proxy is perfect for a wide range of API & MCP monetization needs</p>
                 
                 <div class="use-cases-container">
                     <div class="use-case-card">
@@ -956,13 +984,7 @@
                     </div>
                 </div>
                 
-                <div class="feature-stacked-card">
-                    <div class="feature-stacked-icon">🔐</div>
-                    <div class="feature-stacked-content">
-                        <h3>Secure by Default</h3>
-                        <p>Payment required before API access. No unauthorized usage.</p>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>

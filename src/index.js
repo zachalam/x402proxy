@@ -39,15 +39,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Convert config.protectedEndpoints to the format expected by paymentMiddleware
+// Extract only the path from endpoint strings (e.g., "GET /cat" -> "/cat")
 const protectedEndpoints = {};
 if (config.protectedEndpoints) {
   for (const [endpoint, configValue] of Object.entries(config.protectedEndpoints)) {
-    protectedEndpoints[endpoint] = {
+    // Split endpoint to extract path (e.g., "GET /cat" -> "/cat")
+    const parts = endpoint.split(' ');
+    const path = parts.length > 1 ? parts.slice(1).join(' ') : parts[0];
+    
+    protectedEndpoints[path] = {
       price: configValue.price || config.defaultPrice,
       network: config.network,
     };
   }
 }
+
+console.log(`protectedEndpoints: ${JSON.stringify(protectedEndpoints, null, 2)}`);
 
 // x402 payment middleware configuration
 app.use(

@@ -10,4 +10,5 @@
 * [Docker Deployment](docker-deployment.md)
 * [Troubleshooting](troubleshooting.md)
 * [API Reference](api-reference.md)
+* [x402proxy Developers](x402proxy-developers.md)
 

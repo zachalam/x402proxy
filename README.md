@@ -4,7 +4,7 @@
 
 # 💰 x402proxy
 
-**Monetize Any API in Minutes** • Automatically accept x402 Payments • Simple Config, Zero Code Changes Required
+**Monetize your API in Minutes** • Automatically accept x402 Payments • Simple Config, Zero Code Changes Required
 
 [![zachalam/x402proxy](https://img.shields.io/docker/v/zachalam/x402proxy)](https://hub.docker.com/r/zachalam/x402proxy) [![GitHub stars](https://img.shields.io/github/stars/zachalam/x402proxy.svg?style=social&label=Star)](https://github.com/zachalam/x402proxy) [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
@@ -14,16 +14,16 @@
 
 ## 🚀 What is x402proxy?
 
-A **plug-and-play proxy** that automatically accepts x402 payments.
+A **plug-and-play proxy** that automatically takes care of all the x402 payment logic for you.
 
-Set it up in minutes in front of any existing API and start selling one-time access. 
-Use a simple config file to customize which endpoints to monetize and set your prices.
+Set up in minutes in front of any existing API and start selling one-time access to your endpoints. 
+A simple JSON config file lets you customize which endpoints to monetize, how much they cost, and where you get paid.
 
 ## 🚦 Getting Started
 
 ### 📋 Prerequisites
 
-- **Docker** and **Docker Compose**
+- **Docker**
 
 That's it! No complex dependencies or setup required.
 
